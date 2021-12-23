@@ -32,6 +32,57 @@
        state: unmounted
      become: true
 
+   - name: "Create the file ks.cfg file"
+     become: yes
+     file:
+       path: "{{ wrk_dir }}/ks.cfg"
+       state: touch
+
+   - name: "Fill the content of ks.cfg (beware of vars!)"
+     become: yes
+     blockinfile:
+       path: "{{ wrk_dir }}/ks.cfg"
+       block: |
+         ### BEGIN /etc/grub.d/10_linux ###
+            - name: "Fill the content of grub.cfg"
+     become: yes
+     blockinfile:
+       path: "{{ wrk_dir }}/EFI/BOOT/grub.cfg"
+       block: |
+         #version=RHEL8
+         # Use graphical install
+         #graphical
+         shutdown
+         eula --agreed
+         %packages
+         @^minimal-environment
+         kexec-tools
+         %end
+         # Keyboard layouts
+         keyboard --xlayouts='es'
+         # System language
+         lang en_US.UTF-8
+         # Network information
+         network  --bootproto=dhcp --device=enp1s0 --ipv6=auto --activate
+         #network  --hostname=bastion.local
+         # Run the Setup Agent on first boot
+         firstboot --enable
+         ignoredisk --only-use=vda
+         autopart
+         # Partition clearing information
+         clearpart --none --initlabel
+         # System timezone
+         timezone Europe/Paris --isUtc --nontp
+         # Root password
+         rootpw --iscrypted $6$8y3IIZuF3En4OjsP$Z3JwrmZHGnUkmCuTpqWe9yC/HcrdNmhv6.ec6vDdVfaC8u1lVbohpgfHGn/O9OqMwHVK2JmXWlkgDl5xQS1Ov0
+         %addon com_redhat_kdump --enable --reserve-mb='auto'
+         %end
+         %anaconda
+         pwpolicy root --minlen=6 --minquality=1 --notstrict --nochanges --notempty
+         pwpolicy user --minlen=6 --minquality=1 --notstrict --nochanges --emptyok
+         pwpolicy luks --minlen=6 --minquality=1 --notstrict --nochanges --notempty
+         %end
+
    - name: "Edit isolinux.cfg file so testing media is NOT the default option"
      become: yes
      #become_user: root
@@ -77,3 +128,7 @@
          linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=RHEL-8-5-0-BaseOS-x86_64 inst.ks=cdrom:/ks.cfg
          initrdefi /images/pxeboot/initrd.img
          }
+
+
+
+
