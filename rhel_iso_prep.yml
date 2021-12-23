@@ -43,12 +43,6 @@
      blockinfile:
        path: "{{ wrk_dir }}/ks.cfg"
        block: |
-         ### BEGIN /etc/grub.d/10_linux ###
-            - name: "Fill the content of grub.cfg"
-     become: yes
-     blockinfile:
-       path: "{{ wrk_dir }}/EFI/BOOT/grub.cfg"
-       block: |
          #version=RHEL8
          # Use graphical install
          #graphical
