@@ -42,3 +42,14 @@
        # State is set to Absent to remove if the Searching Line is found
        state: absent
 
+   - name: "Create an entry in the boot menu (isolinux.cfg), which is the default option, allowing to boot using ks.cfg"
+     become: yes
+     blockinfile:
+       path: "{{ wrk_dir }}/isolinux/isolinux.cfg"
+       block: |
+         label kickstart
+           menu label ^Kickstart Installation of RHEL8.5
+           menu default
+           kernel vmlinuz
+           append initrd=initrd.img inst.stage2=hd:LABEL=RHEL-8-5-0-BaseOS-x86_64 inst.ks=cdrom:/ks.cfg
+
