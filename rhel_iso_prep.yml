@@ -21,7 +21,7 @@
 
    - name: Copy Iso content to workingdir (needs to run as root otherwise all files will change ownership)
      copy:
-       src:  "{{ mnt_dir }}/"
+       src:  "{{ mnt_dir }}"
        dest: "{{ wrk_dir }}"
        remote_src: yes
      with_fileglob:
