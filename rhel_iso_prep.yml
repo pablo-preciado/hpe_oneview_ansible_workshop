@@ -46,6 +46,7 @@
      become: yes
      blockinfile:
        path: "{{ wrk_dir }}/isolinux/isolinux.cfg"
+       insertbefore: "label check\n"
        block: |
          label kickstart
            menu label ^Kickstart Installation of RHEL8.5
