@@ -3,8 +3,11 @@
   gather_facts: no
   ##  become: true
 
+###testtttt
+  tasks:
+
+
 #Feature to add in the future, automatic downloading of the iso usging subscription pem file. Link to solution: https://access.redhat.com/solutions/4004591
-#  tasks:
 #   - name: Download iso file using curl
 #     get_url:
 #       url: https://access.cdn.redhat.com/content/origin/files/sha256/1f/1f78e705cd1d8897a05afa060f77d81ed81ac141c2465d4763c0382aa96cadd0/rhel-8.5-x86_64-dvd.iso?user=46606641cfc6a3ae593c2684110d9148&_auth_=1639495117_de3cf35136de9756347e1b01dcc44fb4
