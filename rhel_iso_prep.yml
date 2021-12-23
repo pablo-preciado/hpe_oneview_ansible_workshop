@@ -133,7 +133,7 @@
 
    - name: "Remove original ISO file so we have storage space to create the new custom ISO"
      file:
-       path: {{ org_iso }}
+       path: "{{ org_iso }}"
        state: absent
 
    - name: "Create customized RHEL 8.5 iso image" #as the command under the shell module has the " symbol we need to use ' to limit the whole command, otherwise it'll pop up an eror message
