@@ -3,9 +3,7 @@
   gather_facts: no
   ##  become: true
 
-###testtttt
   tasks:
-
 
 #Feature to add in the future, automatic downloading of the iso usging subscription pem file. Link to solution: https://access.redhat.com/solutions/4004591
 #   - name: Download iso file using curl
@@ -89,13 +87,13 @@
            kernel vmlinuz
            append initrd=initrd.img inst.stage2=hd:LABEL=RHEL-8-5-0-BaseOS-x86_64 inst.ks=cdrom:/ks.cfg
 
-   - name "Delete the file grub.cfg"
+   - name: "Delete the file grub.cfg"
      become: yes
      file:
        path: "{{ wrk_dir }}/EFI/BOOT/grub.cfg"
        state: absent
 
-   - name "Create the file grub.cfg (now it's a blank file)"
+   - name: "Create the file grub.cfg (now it's a blank file)"
      become: yes
      file:
        path: "{{ wrk_dir }}/EFI/BOOT/grub.cfg"
