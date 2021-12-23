@@ -66,3 +66,14 @@
      file:
        path: "{{ wrk_dir }}/EFI/BOOT/grub.cfg"
        state: touch
+
+   - name: "Fill the content of grub.cfg"
+     become: yes
+     blockinfile:
+       path: "{{ wrk_dir }}/EFI/BOOT/grub.cfg"
+       block: |
+         ### BEGIN /etc/grub.d/10_linux ###
+         menuentry 'Install Red Hat Enterprise Linux 8.5' --class fedora --class gnu-linux --class gnu --class os {
+         linuxefi /images/pxeboot/vmlinuz inst.stage2=hd:LABEL=RHEL-8-5-0-BaseOS-x86_64 inst.ks=cdrom:/ks.cfg
+         initrdefi /images/pxeboot/initrd.img
+         }
