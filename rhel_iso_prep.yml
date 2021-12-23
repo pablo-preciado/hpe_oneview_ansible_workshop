@@ -123,6 +123,25 @@
          initrdefi /images/pxeboot/initrd.img
          }
 
+   - name: assure destination directory to be in place
+     file:
+       path: "{{ bastion_iso_dir }}"
+       state: directory
+       modification_time: preserve
+       access_time: preserve
+     become: true
+
+   - name: "Create customized RHEL 8.5 iso image" #as the command under the shell module has the " symbol we need to use ' to limit the whole command, otherwise it'll pop up an eror message
+     shell: 'mkisofs -o {{ cust_iso }} -b isolinux/isolinux.bin -J -R -l -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -eltorito-alt-boot -e images/efiboot.img -no-emul-boot --joliet-long -graft-points -V "RHEL-8-5-0-BaseOS-x86_64" {{ wrk_dir }}'
+     become: true
+
+   - name: "Add an MBR in case we want to use this iso to boot from a disk storage device" #not really needed, but added just in case
+     shell: "isohybrid --uefi {{ cust_iso }}"
+     become: true
+
+   - name: "Implant md5 to iso in case it needs to be tested on boot" #not really needed, but added just in case
+     shell: "implantisomd5 {{ cust_iso }}"
+     become: true
 
 
 
