@@ -20,7 +20,7 @@
      #  patterns: '*.pem'
      #register: rhcdn_cert
 
-   - debug: msg= "{{ rhcdn_key.files.paths }}"
+   - debug: msg= "{{ rhcdn_key | basename }}"
 
    #- debug: msg= "{{ rhcdn_cert.files }}"
           
