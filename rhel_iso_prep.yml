@@ -32,14 +32,15 @@
        state: unmounted
      become: true
 
-   - name: "Create the file ks.cfg file"
-     become: yes
-     file:
-       path: "{{ wrk_dir }}/ks.cfg"
-       state: touch
+     #   - name: "Create the file ks.cfg file"
+     #     become: yes
+     #     file:
+     #       path: "{{ wrk_dir }}/ks.cfg"
+     #       state: touch
 
-   - name: "Fill the content of ks.cfg (beware of vars!)"
+   - name: "Create and fill ks.cfg (beware of vars!)"
      become: yes
+     create: yes
      blockinfile:
        path: "{{ wrk_dir }}/ks.cfg"
        block: |
