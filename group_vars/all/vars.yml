@@ -25,8 +25,8 @@ cust_iso_file: custom_rhel.iso
 
 #Directories
 bastion_iso_dir: /var/www/html/isos
-mnt_dir:  /rhel_cdrom_mount
-wrk_dir:  /rhel_cdrom
+mnt_dir:  /tmp/rhel_cdrom_mount
+wrk_dir:  /tmp/rhel_cdrom
 
 #Absolute names for orginal and custom iso
 org_iso:  "{{ bastion_iso_dir }}/{{ org_iso_file }}"
