@@ -18,13 +18,13 @@
        patterns: '*.pem'
      register: rhcdn_cert
 
-   - debug: var=rhcdn_key
+     #   - debug: var=rhcdn_key
 
-   - debug: var=rhcdn_cert
+     #   - debug: var=rhcdn_cert
           
-       #   - name: "Download Red Hat ISO"
-       #     get_url:
-       #       url: "{{ iso_url }}"
-       #       dest: "{{ org_iso }}"
-       #       client_cert: '/etc/pki/entitlement/"{{ rhcdn_cert }}"' #2426331512878849778.pem
-       #       client_key: '/etc/pki/entitlement/"{{ rhcdn_key }}"'
+   - name: "Download Red Hat ISO"
+     get_url:
+       url: "{{ iso_url }}"
+       dest: "{{ org_iso }}"
+       client_cert: '/etc/pki/entitlement/"{{ rhcdn_cert }}"' #2426331512878849778.pem
+       client_key: '/etc/pki/entitlement/"{{ rhcdn_key }}"'
