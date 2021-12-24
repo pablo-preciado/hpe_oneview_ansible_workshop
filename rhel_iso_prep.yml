@@ -55,7 +55,7 @@
          # Keyboard layouts
          keyboard --xlayouts= "{{ keyboard_layout  }}"
          # System language
-         lang "{{ system-language }}"
+         lang "{{ system_language }}"
          # Network information
          network  --bootproto= "{{ network_bootproto }}" --device=enp1s0 --ipv6=auto --activate
          #network  --hostname=bastion.local
