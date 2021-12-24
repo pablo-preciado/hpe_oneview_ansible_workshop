@@ -9,5 +9,5 @@
      get_url:
        url: "{{ iso_url }}"
        dest: "{{ org_iso }}"
-       client_cert: /etc/pki/entitlement/*.pem
-       client_key: /etc/pki/entitlement/*-key.pem
+       client_cert: /etc/pki/entitlement/2426331512878849778.pem
+       client_key: /etc/pki/entitlement/2426331512878849778-key.pem
