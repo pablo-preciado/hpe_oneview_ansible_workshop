@@ -20,9 +20,9 @@
        patterns: '*.pem'
      register: rhcdn_cert
 
-   - debug: msg= "{{ rhcdn_key.files[0].path }}"
+   - debug: msg= "{{ rhcdn_key.files.path }}"
 
-   - debug: msg= "{{ rhcdn_cert.files[0].path }}"
+   - debug: msg= "{{ rhcdn_cert.files.path }}"
           
    #- name: "Download Red Hat ISO"
    #   get_url:
