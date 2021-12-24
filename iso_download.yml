@@ -1,9 +1,15 @@
 ---
 - hosts: bastion_host
   gather_facts: no
-  ##  become: true
 
   tasks:
+  - name: "Download Red Hat ISO"
+    get_url:
+       url: "{{ iso_url }}"
+       dest: "{{ org_iso }}"
+       client_cert: '/etc/pki/entitlement/2426331512878849778.pem' #'{{ rhcdn_cert.path }}'
+       client_key: '/etc/pki/entitlement/2426331512878849778-key.pem' #'{{ rhcdn_key.path }}'
+
 
           #########################################
           #I should be debugging the use of find moduel instead of using file name
@@ -22,11 +28,4 @@
      #  file_type: file
      #  excludes: '*-key.pem'
      #  patterns: '*.pem'
-     #register: rhcdn_cert
-          
-   - name: "Download Red Hat ISO"
-      get_url:
-       url: "{{ iso_url }}"
-       dest: "{{ org_iso }}"
-       client_cert: '/etc/pki/entitlement/2426331512878849778.pem' #'{{ rhcdn_cert.path }}'
-       client_key: '/etc/pki/entitlement/2426331512878849778-key.pem' #'{{ rhcdn_key.path }}'
+     #register: rhcdn_cert    
