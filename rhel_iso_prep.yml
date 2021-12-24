@@ -53,11 +53,11 @@
          kexec-tools
          %end
          # Keyboard layouts
-         keyboard --xlayouts='es'
+         keyboard --xlayouts= "{{ keyboard_layout  }}"
          # System language
-         lang en_US.UTF-8
+         lang "{{ system-language }}"
          # Network information
-         network  --bootproto=dhcp --device=enp1s0 --ipv6=auto --activate
+         network  --bootproto= "{{ network_bootproto }}" --device=enp1s0 --ipv6=auto --activate
          #network  --hostname=bastion.local
          # Run the Setup Agent on first boot
          firstboot --enable
@@ -66,7 +66,7 @@
          # Partition clearing information
          clearpart --none --initlabel
          # System timezone
-         timezone Europe/Paris --isUtc --nontp
+         timezone "{{ time_zone }}" --isUtc --nontp
          # Root password
          rootpw --iscrypted $6$8y3IIZuF3En4OjsP$Z3JwrmZHGnUkmCuTpqWe9yC/HcrdNmhv6.ec6vDdVfaC8u1lVbohpgfHGn/O9OqMwHVK2JmXWlkgDl5xQS1Ov0
          %addon com_redhat_kdump --enable --reserve-mb='auto'

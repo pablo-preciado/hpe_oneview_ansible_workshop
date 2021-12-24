@@ -31,3 +31,19 @@ wrk_dir:  /rhel_cdrom
 #Absolute names for orginal and custom iso
 org_iso:  "{{ bastion_iso_dir }}/{{ org_iso_file }}"
 cust_iso: "{{ bastion_iso_dir }}/{{ cust_iso_file }}"
+
+##################################
+#Variables for configuring ks.cfg
+##################################
+
+#Language
+keyboard_layout: "'es'" #keep the ' symbol
+system_language: "en_US.UTF-8"
+
+#Network related (righ now this automation is only ready for dhcp)
+
+network_bootproto: "dhcp"
+#host_name: rhel.local
+
+#Other stuff
+time_zone: "Europe/Paris"
