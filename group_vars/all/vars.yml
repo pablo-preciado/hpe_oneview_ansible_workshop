@@ -16,6 +16,9 @@ deployment_network_name: "Redhat_workload"
 # RHEL 8.5 Install variables
 ############################
 
+#URL for downloading the ISO file
+iso_url: https://access.cdn.redhat.com/content/origin/files/sha256/1f/1f78e705cd1d8897a05afa060f77d81ed81ac141c2465d4763c0382aa96cadd0/rhel-8.5-x86_64-dvd.iso?user=46606641cfc6a3ae593c2684110d9148&_auth_=1640349399_4747ed831f26b1587e42a0ea3ef90ab0
+
 #ISO file names
 org_iso_file: rhel-8.5-x86_64-dvd.iso
 cust_iso_file: custom_rhel.iso

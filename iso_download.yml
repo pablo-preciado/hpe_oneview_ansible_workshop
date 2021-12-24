@@ -1,0 +1,13 @@
+---
+- hosts: bastion_host
+  gather_facts: no
+  ##  become: true
+
+  tasks:
+
+   - name: "Download Red Hat ISO"
+     get_url:
+       url: "{{ iso_url }}"
+       dest: "{{ org_iso }}"
+       client_cert: /etc/pki/entitlement/*.pem
+       client_key: /etc/pki/entitlement/*-key.pem
