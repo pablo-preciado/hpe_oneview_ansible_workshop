@@ -20,11 +20,11 @@
 
    - debug: msg= "{{ rhcdn_key.path }}"
 
-   - debug: msg= "{{ rhcdn_cert.path }}"
+     #- debug: msg= "{{ rhcdn_cert.path }}"
           
-   - name: "Download Red Hat ISO"
-     get_url:
-       url: "{{ iso_url }}"
-       dest: "{{ org_iso }}"
-       client_cert: '{{ rhcdn_cert.path }}' #'/etc/pki/entitlement/"{{ rhcdn_cert }}"' #2426331512878849778.pem
-       client_key: '{{ rhcdn_key.path }}'
+   #- name: "Download Red Hat ISO"
+   #   get_url:
+   #    url: "{{ iso_url }}"
+   #    dest: "{{ org_iso }}"
+   #    client_cert: '{{ rhcdn_cert.path }}' #'/etc/pki/entitlement/"{{ rhcdn_cert }}"' #2426331512878849778.pem
+   #    client_key: '{{ rhcdn_key.path }}'
