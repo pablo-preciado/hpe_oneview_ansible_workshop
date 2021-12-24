@@ -6,7 +6,7 @@
 
   - name: "Check if original ISO file is already present"
     stat:
-      path: "{{ org_is }}"
+      path: "{{ org_iso }}"
     register: org_iso_is_present
 
   - name: "Download Red Hat ISO if it's not there"
