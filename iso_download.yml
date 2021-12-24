@@ -5,28 +5,28 @@
 
   tasks:
 
-   - name: "Find the name of the key file for accessing Red Hat CDN, we'll use this for downloading the ISO file"
-     find:
-       paths: /etc/pki/entitlement/
-       file_type: file
-       patterns: '*-key.pem'
-     register: rhcdn_key
+          #########################################
+          #I should be debugging the use of find moduel instead of using file name
+          #########################################
 
-     #- name: "Find the name of the cert file for accessing Red Hat CDN, we'll use this for downloading the ISO file"
+   #- name: "Find the name of the key file for accessing Red Hat CDN, we'll use this for downloading the ISO file"
+      #find:
+        #paths: /etc/pki/entitlement/
+        #file_type: file
+        #patterns: '*-key.pem'
+      #register: rhcdn_key
+
+   #- name: "Find the name of the cert file for accessing Red Hat CDN, we'll use this for downloading the ISO file"
      #find:
      #  paths: /etc/pki/entitlement/
      #  file_type: file
      #  excludes: '*-key.pem'
      #  patterns: '*.pem'
      #register: rhcdn_cert
-
-   - debug: msg= "{{ rhcdn_key | basename }}"
-
-   #- debug: msg= "{{ rhcdn_cert.files }}"
           
-   #- name: "Download Red Hat ISO"
-   #   get_url:
-   #    url: "{{ iso_url }}"
-   #    dest: "{{ org_iso }}"
-   #    client_cert: '{{ rhcdn_cert.path }}' #'/etc/pki/entitlement/"{{ rhcdn_cert }}"' #2426331512878849778.pem
-   #    client_key: '{{ rhcdn_key.path }}'
+   - name: "Download Red Hat ISO"
+      get_url:
+       url: "{{ iso_url }}"
+       dest: "{{ org_iso }}"
+       client_cert: '/etc/pki/entitlement/2426331512878849778.pem' #'{{ rhcdn_cert.path }}'
+       client_key: '/etc/pki/entitlement/2426331512878849778-key.pem' #'{{ rhcdn_key.path }}'
