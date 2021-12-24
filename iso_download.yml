@@ -9,14 +9,14 @@
      find:
        paths: /etc/pki/entitlement/
        patterns: '*-key.pem'
-       register: rhcdn_key
+     register: rhcdn_key
 
    - name: "Find the name of the cert file for accessing Red Hat CDN, we'll use this for downloading the ISO file"
      find:
        paths: /etc/pki/entitlement/
        excludes: '-key'
        patterns: '*.pem'
-       register: rhcdn_cert
+     register: rhcdn_cert
 
    - debug: msg= "{{ rhcdn_key.stdout }}"
 
