@@ -3,12 +3,19 @@
   gather_facts: no
 
   tasks:
-  - name: "Download Red Hat ISO"
+
+  - name: "Check if original ISO file is already present"
+    stat:
+      path: "{{ org_is }}"
+    register: org_iso_is_present
+
+  - name: "Download Red Hat ISO if it's not there"
     get_url:
        url: "{{ iso_url }}"
        dest: "{{ org_iso }}"
        client_cert: '/etc/pki/entitlement/2426331512878849778.pem' #'{{ rhcdn_cert.path }}'
        client_key: '/etc/pki/entitlement/2426331512878849778-key.pem' #'{{ rhcdn_key.path }}'
+    when: not org_iso_is_present.stat.exists
 
 
           #########################################
