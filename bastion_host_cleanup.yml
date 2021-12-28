@@ -28,5 +28,4 @@
 #       path: "{{ cust_iso }}"
 #       state: absent
 #     become: true
-#     # needs to run as root as file ownership will not allow deletion otherwise 
-
+#     # needs to run as root as file ownership will not allow deletion otherwise

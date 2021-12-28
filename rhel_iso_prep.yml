@@ -14,7 +14,7 @@
        state: mounted
      become: true
 
-   - name: Create a directory if it does not exist
+   - name: Create a working directory if it does not exist
      file:
        path: "{{ wrk_dir }}"
        state: directory
@@ -31,12 +31,6 @@
        path: "{{ mnt_dir }}"
        state: unmounted
      become: true
-
-     #   - name: "Create the file ks.cfg file"
-     #     become: yes
-     #     file:
-     #       path: "{{ wrk_dir }}/ks.cfg"
-     #       state: touch
 
    - name: "Create and fill ks.cfg (beware of vars!)"
      become: yes
@@ -106,12 +100,6 @@
      file:
        path: "{{ wrk_dir }}/EFI/BOOT/grub.cfg"
        state: absent
-
-       #   - name: "Create the file grub.cfg (now it's a blank file)"
-       #     become: yes
-       #     file:
-       #       path: "{{ wrk_dir }}/EFI/BOOT/grub.cfg"
-       #       state: touch
 
    - name: "Create and fill the content of grub.cfg"
      become: yes
